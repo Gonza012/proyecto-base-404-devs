@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.member-card {
+    background-color: #1e293b;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    color: white;
+}
+
+.member-card img {
+    width: 100px;
+    border-radius: 10px;
+}
