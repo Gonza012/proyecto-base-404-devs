@@ -373,6 +373,25 @@
   font-weight: 600;
 }
 
+.deleteBtn {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0 5px;
+  margin-left: auto;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: grayscale(0%);
+  text-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+}
+
 @media (max-width: 1200px) {
   .mainContainer {
     padding: 20px;

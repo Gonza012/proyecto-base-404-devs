@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Form, Button, Alert } from "react-bootstrap"; // Importamos Alert
+import { Badge, Form, Button, Alert } from "react-bootstrap";
 import styles from "./GameDetails.module.css";
 import logoEvil from "../../assets/img/lgopngegnegro.png";
 
@@ -14,6 +14,7 @@ function GameDetail({ juego }) {
   const [nuevoTexto, setNuevoTexto] = useState("");
   const [nuevoVoto, setNuevoVoto] = useState("positivo");
   const [enDeseados, setEnDeseados] = useState(false);
+  const [usuarioActual, setUsuarioActual] = useState(null);
 
   const [alerta, setAlerta] = useState({
     show: false,
@@ -27,17 +28,27 @@ function GameDetail({ juego }) {
       setAlerta({ show: false, msg: "", variant: "success" });
     }, 3000);
   };
-  // ----------------------------------------
 
   useEffect(() => {
     setMediaActual(galeria[0]);
-    setResenas(juego.resenas);
-    setComentarios(juego.comentarios || []);
     setNuevoTexto("");
     setAlerta({ show: false, msg: "", variant: "success" });
 
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    setUsuarioActual(currentUser);
 
+    const listaJuegosLS = JSON.parse(localStorage.getItem("juegos")) || [];
+    const juegoGuardado = listaJuegosLS.find((g) => g.id === juego.id);
+
+    if (juegoGuardado) {
+      setResenas(juegoGuardado.resenas);
+      setComentarios(juegoGuardado.comentarios || []);
+    } else {
+      setResenas(juego.resenas);
+      setComentarios(juego.comentarios || []);
+    }
+
+    // 3. Wishlist Check
     if (currentUser && currentUser.wishlist) {
       const estaGuardado = currentUser.wishlist.some((id) => id === juego.id);
       setEnDeseados(estaGuardado);
@@ -46,10 +57,12 @@ function GameDetail({ juego }) {
     }
   }, [juego]);
 
-  const handleWishlist = () => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const yaComento = usuarioActual
+    ? comentarios.some((c) => c.usuario === usuarioActual.username)
+    : false;
 
-    if (!currentUser) {
+  const handleWishlist = () => {
+    if (!usuarioActual) {
       mostrarNotificacion(
         "🔒 Debes iniciar sesión para guardar favoritos",
         "danger"
@@ -57,6 +70,7 @@ function GameDetail({ juego }) {
       return;
     }
 
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
     let userWishlist = currentUser.wishlist || [];
 
     if (enDeseados) {
@@ -71,6 +85,7 @@ function GameDetail({ juego }) {
 
     currentUser.wishlist = userWishlist;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    setUsuarioActual(currentUser); // Actualizamos estado local
 
     const usersDB = JSON.parse(localStorage.getItem("usersDB")) || [];
     const usersActualizados = usersDB.map((user) => {
@@ -85,14 +100,40 @@ function GameDetail({ juego }) {
 
   const esVideo = (url) => url && url.includes("youtube.com/embed");
 
+  const handleBorrarResena = (resenaAEliminar) => {
+    const nuevosComentarios = comentarios.filter(
+      (c) => c.usuario !== resenaAEliminar.usuario
+    );
+    const nuevosContadores = { ...resenas };
+    if (resenaAEliminar.voto === "positivo") nuevosContadores.positivas--;
+    else nuevosContadores.negativas--;
+    setComentarios(nuevosComentarios);
+    setResenas(nuevosContadores);
+
+    const listaJuegosLS = JSON.parse(localStorage.getItem("juegos")) || [];
+    const indiceJuego = listaJuegosLS.findIndex((g) => g.id === juego.id);
+
+    if (indiceJuego !== -1) {
+      listaJuegosLS[indiceJuego].comentarios = nuevosComentarios;
+      listaJuegosLS[indiceJuego].resenas = nuevosContadores;
+      localStorage.setItem("juegos", JSON.stringify(listaJuegosLS));
+      mostrarNotificacion("🗑️ Reseña eliminada correctamente", "warning");
+    }
+  };
+
   const handleSubmitResena = (e) => {
     e.preventDefault();
     if (nuevoTexto.trim() === "") return;
 
-    const usuarioLogueado = JSON.parse(localStorage.getItem("currentUser"));
-    const nombreUsuario = usuarioLogueado
-      ? usuarioLogueado.username
-      : "Invitado";
+    if (yaComento) {
+      mostrarNotificacion(
+        "⚠️ Ya has publicado una reseña para este juego.",
+        "danger"
+      );
+      return;
+    }
+
+    const nombreUsuario = usuarioActual ? usuarioActual.username : "Invitado";
 
     const nuevaResenaObj = {
       usuario: nombreUsuario,
@@ -117,6 +158,13 @@ function GameDetail({ juego }) {
         ...(listaJuegosLS[indiceJuego].comentarios || []),
       ];
       listaJuegosLS[indiceJuego].resenas = nuevosContadores;
+    } else {
+      const juegoNuevoParaGuardar = {
+        ...juego,
+        comentarios: [nuevaResenaObj, ...(juego.comentarios || [])],
+        resenas: nuevosContadores,
+      };
+      listaJuegosLS.push(juegoNuevoParaGuardar);
     }
 
     localStorage.setItem("juegos", JSON.stringify(listaJuegosLS));
@@ -278,7 +326,6 @@ function GameDetail({ juego }) {
                     </span>
                   </div>
                 </div>
-                {/* Specs Box Recomendados */}
                 <div className={styles.specBox}>
                   <span className={styles.specBoxTitle}>RECOMENDADOS</span>
                   <div className={styles.specRow}>
@@ -317,45 +364,57 @@ function GameDetail({ juego }) {
 
             <div className={styles.reviewFormCard}>
               <h4 className="text-white mb-3">Escribe tu reseña</h4>
-              <Form onSubmit={handleSubmitResena}>
-                <Form.Group className="mb-4">
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    className={styles.epicInput}
-                    placeholder="¿Qué te pareció el juego? Cuéntanos tu experiencia..."
-                    value={nuevoTexto}
-                    onChange={(e) => setNuevoTexto(e.target.value)}
-                  />
-                </Form.Group>
-                <div className="d-flex justify-content-between align-items-center mobile-column">
-                  <div className="d-flex gap-3 mb-3 mb-md-0">
-                    <div
-                      className={`${styles.radioOption} ${
-                        nuevoVoto === "positivo" ? styles.selectedPos : ""
-                      }`}
-                      onClick={() => setNuevoVoto("positivo")}
-                    >
-                      👍 Lo recomiendo
+              {!usuarioActual ? (
+                <Alert variant="warning">
+                  {" "}
+                  Debes iniciar sesión para escribir una reseña.
+                </Alert>
+              ) : yaComento ? (
+                <Alert variant="info">
+                  ✅ <strong>¡Gracias!</strong> Ya has compartido tu opinión
+                  sobre este juego.
+                </Alert>
+              ) : (
+                <Form onSubmit={handleSubmitResena}>
+                  <Form.Group className="mb-4">
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      className={styles.epicInput}
+                      placeholder="¿Qué te pareció el juego? Cuéntanos tu experiencia..."
+                      value={nuevoTexto}
+                      onChange={(e) => setNuevoTexto(e.target.value)}
+                    />
+                  </Form.Group>
+                  <div className="d-flex justify-content-between align-items-center mobile-column">
+                    <div className="d-flex gap-3 mb-3 mb-md-0">
+                      <div
+                        className={`${styles.radioOption} ${
+                          nuevoVoto === "positivo" ? styles.selectedPos : ""
+                        }`}
+                        onClick={() => setNuevoVoto("positivo")}
+                      >
+                        👍 Lo recomiendo
+                      </div>
+                      <div
+                        className={`${styles.radioOption} ${
+                          nuevoVoto === "negativo" ? styles.selectedNeg : ""
+                        }`}
+                        onClick={() => setNuevoVoto("negativo")}
+                      >
+                        👎 No lo recomiendo
+                      </div>
                     </div>
-                    <div
-                      className={`${styles.radioOption} ${
-                        nuevoVoto === "negativo" ? styles.selectedNeg : ""
-                      }`}
-                      onClick={() => setNuevoVoto("negativo")}
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className={styles.btnSubmit}
                     >
-                      👎 No lo recomiendo
-                    </div>
+                      Publicar Reseña
+                    </Button>
                   </div>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className={styles.btnSubmit}
-                  >
-                    Publicar Reseña
-                  </Button>
-                </div>
-              </Form>
+                </Form>
+              )}
             </div>
 
             <div className={styles.reviewsSection}>
@@ -366,9 +425,23 @@ function GameDetail({ juego }) {
                 <div className={styles.reviewsList}>
                   {comentarios.map((r, i) => (
                     <div key={i} className={styles.reviewCard}>
-                      <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className={styles.reviewUser}>{r.usuario}</span>
-                        <span className={styles.reviewDate}>{r.fecha}</span>
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                          <span className={styles.reviewUser}>{r.usuario}</span>
+                          <span className="mx-2 text-muted">|</span>
+                          <span className={styles.reviewDate}>{r.fecha}</span>
+                        </div>
+                        {usuarioActual &&
+                          usuarioActual.username === r.usuario && (
+                            <button
+                              className={styles.deleteBtn}
+                              onClick={() => handleBorrarResena(r)}
+                              title="Eliminar mi reseña"
+                              type="button"
+                            >
+                              🗑️
+                            </button>
+                          )}
                       </div>
                       <div className="mb-2">
                         {r.voto === "positivo" ? (
