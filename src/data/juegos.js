@@ -7,7 +7,7 @@ const juegos = [
     desarrollador: "Rockstar Games",
     trailer: "https://www.youtube.com/embed/VNbONMSObfs",
     banner:
-      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1765479644",
+      "https://wallpapers.com/images/high/cool-gta-5-r4je28wqifoa7boe.webp",
     imagenes: [
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3240220/7f432690bd6365e871a2463a5db9cc4e7ebe1151/ss_7f432690bd6365e871a2463a5db9cc4e7ebe1151.1920x1080.jpg?t=1765479644",
       "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3240220/85ff4a9fad2064c201c00c27d8d28c28fa03c481/ss_85ff4a9fad2064c201c00c27d8d28c28fa03c481.1920x1080.jpg?t=1765479644",
@@ -19,18 +19,20 @@ const juegos = [
       "Cuando un joven estafador callejero, un ladrón de bancos retirado y un psicópata aterrador se ven involucrados con lo peor y más desquiciado del mundo criminal...",
     requisitos: {
       minimos: {
-        os: "Windows 10 64 Bit",
-        procesador: "Intel Core i5 3470 / AMD X8 FX-8350",
+        os: "Windows 11",
+        procesador: "Intel® Core™ i5-9600K | AMD Ryzen™ 5 3600",
         memoria: "8 GB RAM",
-        graficos: "NVIDIA GTX 660 2GB / AMD HD 7870 2GB",
-        almacenamiento: "72 GB disponibles",
+        graficos:
+          "NVIDIA GeForce® GTX 1630 (4GB VRAM) | AMD Radeon™ RX 6400 (4GB VRAM)",
+        almacenamiento: "105 GB disponibles",
       },
       recomendados: {
-        os: "Windows 11 64 Bit",
-        procesador: "Intel Core i7 8700 / AMD Ryzen 5 3600",
+        os: "Windows 11",
+        procesador: " Intel® Core™ i5-9600K | AMD Ryzen™ 5 3600",
         memoria: "16 GB RAM",
-        graficos: "NVIDIA GTX 1080 / AMD RX 5700",
-        almacenamiento: "SSD 72 GB",
+        graficos:
+          " NVIDIA GeForce® RTX 3060 (8GB VRAM) | AMD Radeon™ RX 6600XT (8GB VRAM)",
+        almacenamiento: "105 GB",
       },
     },
     resenas: {
@@ -121,7 +123,7 @@ const juegos = [
   {
     id: "MNC-001",
     nombre: "Minecraft: Java & Bedrock Edition for PC",
-    precio: 39.99,
+    precio: 30.0,
     categoria: "Carreras",
     desarrollador: "Microsoft Studios",
     trailer: "https://www.youtube.com/embed/79RwQe6EN_4",

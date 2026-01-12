@@ -49,7 +49,7 @@ function Register() {
             <input
               type="text"
               name="username"
-              placeholder="Ej: Nombre"
+              placeholder="Ej: pepitoGamer"
               required
             />
           </div>
@@ -58,7 +58,7 @@ function Register() {
             <input
               type="email"
               name="email"
-              placeholder="Nombre@mail.com"
+              placeholder="Nombre@gmail.com"
               required
             />
           </div>
@@ -71,7 +71,7 @@ function Register() {
             <input type="password" name="confirmPassword" required />
           </div>
 
-          <button type="submit" className="login-btn">
+          <button type="submit" className="loginBtn">
             Registrarse
           </button>
         </form>
