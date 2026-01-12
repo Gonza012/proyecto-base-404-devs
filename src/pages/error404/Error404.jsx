@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./Error404.css";
 
-function Error404() {
+export default function Error404() {
   return (
     <div className="reContainer">
       <div className="fadeInText">
@@ -12,11 +11,11 @@ function Error404() {
         <p className="reDescription">
           Este camino está cerrado por Los Iluminados.
         </p>
-        <Link to="/home" className="reBtn">
+
+        <Link to="/" className="reBtn">
           CONTINUE?
         </Link>
       </div>
     </div>
   );
 }
-export default Error404;
