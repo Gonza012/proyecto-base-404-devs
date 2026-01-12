@@ -1,30 +1,31 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
   const [errorLogin, setErrorLogin] = useState("");
   const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    const dataUser = getLSItems("userData");
-    if (!dataUser) {
-      setErrorLogin("No hay ningún usuario registrado. Ve a Registro.");
-      return;
-    }
-    if (
-      dataUser.username === data.username &&
-      dataUser.password === data.password
-    ) {
-      setLSItems("isAdmin", true);
+    const usersDB = JSON.parse(localStorage.getItem("usersDB")) || [];
+    const userFound = usersDB.find(
+      (user) =>
+        user.username === data.username && user.password === data.password
+    );
+
+    if (userFound) {
+      localStorage.setItem("currentUser", JSON.stringify(userFound));
+      if (userFound.username === "Admin") {
+        localStorage.setItem("isAdmin", "true");
+      } else {
+        localStorage.setItem("isAdmin", "false");
+      }
       setErrorLogin("");
       navigate("/");
     } else {
-      setLSItems("isAdmin", false);
       setErrorLogin("Usuario o contraseña incorrectos");
     }
   };
@@ -33,35 +34,35 @@ function Login() {
     <div className="loginContainer">
       <div className="loginCard">
         <h1>Bienvenido</h1>
-        <p className="subtitle">Ingresa a tu cuenta de Evil Games</p>
-
+        <p className="subtitle">Ingresa a Evil Games</p>
         <form onSubmit={handleSubmit} className="loginForm">
           <div className="inputGroup">
             <label>Usuario</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="Ej: Jose Perez"
-              required
-            />
+            <input type="text" name="username" required />
           </div>
-
           <div className="inputGroup">
             <label>Contraseña</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••"
-              required
-            />
+            <input type="password" name="password" required />
           </div>
 
           <button type="submit" className="loginBtn">
             Iniciar Sesión
           </button>
         </form>
-
         {errorLogin && <div className="errorMessage">{errorLogin}</div>}
+        <div style={{ marginTop: "20px" }}>
+          <span style={{ color: "#ccc" }}>¿No tienes cuenta? </span>
+          <Link
+            to="/register"
+            style={{
+              color: "#ff4444",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            Regístrate aquí
+          </Link>
+        </div>
       </div>
     </div>
   );
