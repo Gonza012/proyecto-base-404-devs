@@ -1,5 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/home";
+import Nosotros from "./pages/AboutUs/aboutUs";
+
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Aboutus" element={<Aboutus />} />
+          <Route path="/nosotros" element={<Nosotros />} />
+        </Routes>
+      </BrowserRouter>
+      ,
+    </>
 import AdminPanel from "./pages/admin/AdminPanel";
 import ProtectedAdmin from "./components/ProtectedAdmin";
 import Login from "./pages/login/login";
