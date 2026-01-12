@@ -3,6 +3,7 @@ import "./App.css";
 import Aboutus from "./pages/aboutus/aboutus";
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
+import AuthChecker from "./routes/authChecker";
 
 function App() {
   return (
@@ -12,6 +13,15 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/Aboutus" element={<Aboutus />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={
+              <AuthChecker>
+                {" "}
+                <Home />{" "}
+              </AuthChecker>
+            }
+          />
         </Routes>
       </BrowserRouter>
       ,

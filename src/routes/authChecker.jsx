@@ -7,7 +7,7 @@ function AuthChecker({ children }) {
   useEffect(() => {
     const isAdmin = getLSItems("isAdmin");
     if (!isAdmin) {
-      navigate("Login");
+      navigate("/login");
     }
   });
   return children;
