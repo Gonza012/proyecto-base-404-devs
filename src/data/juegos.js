@@ -42,7 +42,7 @@ const juegos = [
   },
   {
     id: "RE4-001",
-    nombre: "Resident Evil 4",
+    nombre: "Resident Evil 4 Remake",
     precio: 39.99,
     categoria: "Survival Horror",
     desarrollador: "Capcom",

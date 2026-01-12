@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import GameCard from "../../components/GameCard";
+import { Link } from "react-router-dom";
 import "./home.css";
 
 export default function Home() {
