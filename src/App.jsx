@@ -4,7 +4,7 @@ import Aboutus from "./pages/aboutus/aboutus";
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
 import Error404 from "./pages/error404/Error404";
-import GameDetailPage from "./pages/GameDetailPage";
+import GameDetailPage from "./pages/gameDetailpage/GameDetailPage";
 import Register from "./pages/register/register";
 
 function App() {
