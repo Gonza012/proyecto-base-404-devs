@@ -6,6 +6,7 @@ import GameDetailPage from "./pages/gameDetailpage/GameDetailPage";
 import Register from "./pages/register/register";
 import Aboutus from "./pages/aboutus/aboutus";
 import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./pages/home/home";
 
 function App() {
   return (
