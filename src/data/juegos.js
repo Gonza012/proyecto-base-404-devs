@@ -42,7 +42,7 @@ const juegos = [
   },
   {
     id: "RE4-001",
-    nombre: "Resident Evil 4 Remake",
+    nombre: "resident-evil-4",
     precio: 39.99,
     categoria: "Survival Horror",
     desarrollador: "Capcom",
@@ -80,7 +80,7 @@ const juegos = [
     },
   },
   {
-    id: "NFS-001",
+    id: "need-for-speed-heat",
     nombre: "Need for Speed™ Heat",
     precio: 69.99,
     categoria: "Carreras",
