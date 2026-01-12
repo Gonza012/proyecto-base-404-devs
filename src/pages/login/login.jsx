@@ -18,13 +18,15 @@ function Login() {
 
     if (userFound) {
       localStorage.setItem("currentUser", JSON.stringify(userFound));
+
       if (userFound.username === "Admin") {
         localStorage.setItem("isAdmin", "true");
+        navigate("/AdminPanel");
       } else {
         localStorage.setItem("isAdmin", "false");
+        navigate("/");
       }
       setErrorLogin("");
-      navigate("/");
     } else {
       setErrorLogin("Usuario o contraseña incorrectos");
     }
@@ -67,6 +69,7 @@ function Login() {
     </div>
   );
 }
+
 const getLSItems = (key) => {
   const dataFound = localStorage.getItem(key);
   if (!dataFound) return null;

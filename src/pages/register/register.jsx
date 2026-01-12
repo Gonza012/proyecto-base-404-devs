@@ -28,7 +28,7 @@ function Register() {
       username: data.username,
       password: data.password,
       email: data.email,
-      role: "user",
+      role: data.username === "Admin" ? "admin" : "user",
     };
     existingUsers.push(newUser);
     localStorage.setItem("usersDB", JSON.stringify(existingUsers));
