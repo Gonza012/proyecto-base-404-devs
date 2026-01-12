@@ -23,16 +23,16 @@ body {
 
 .fadeInText {
   animation: fadeInAnimation ease 4s;
-  animation-iteration-count: 1;
   animation-fill-mode: forwards;
   opacity: 0;
 }
 
 @keyframes fadeInAnimation {
-  0% {
+  from {
     opacity: 0;
   }
-  100% {
+
+  to {
     opacity: 1;
   }
 }
@@ -41,7 +41,6 @@ body {
   font-size: 6rem;
   font-weight: bold;
   letter-spacing: 5px;
-  margin-bottom: 0;
   text-shadow: 0 0 10px #3f0000, 0 0 20px #300000;
   text-transform: uppercase;
 }
@@ -50,7 +49,6 @@ body {
   font-size: 2rem;
   color: #7a7a7a;
   margin-top: 10px;
-  font-weight: normal;
 }
 
 .reDescription {
@@ -70,7 +68,7 @@ body {
   letter-spacing: 2px;
 }
 
-.re4Btn:hover {
+.reBtn:hover {
   background-color: #8a0707;
   color: #000;
   box-shadow: 0 0 15px #8a0707;
@@ -78,7 +76,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .you-died-text {
+  .youDiedText {
     font-size: 4rem;
   }
 }

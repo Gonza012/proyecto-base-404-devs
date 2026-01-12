@@ -1,7 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import "./App.css";
-import Aboutus from "./pages/aboutus/aboutus";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Home from "./pages/home/home";
+import AdminPanel from "./pages/admin/AdminPanel";
+import ProtectedAdmin from "./components/ProtectedAdmin";
 import Login from "./pages/login/login";
 import Error404 from "./pages/error404/Error404";
 import GameDetailPage from "./pages/gameDetailpage/GameDetailPage";
@@ -9,6 +10,22 @@ import Register from "./pages/register/register";
 
 function App() {
   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedAdmin>
+              <AdminPanel />
+            </ProtectedAdmin>
+          }
+        />
+
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </BrowserRouter>
     <>
       <BrowserRouter>
         <Routes>
@@ -26,3 +43,4 @@ function App() {
 }
 
 export default App;
+
