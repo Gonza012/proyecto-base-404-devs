@@ -5,7 +5,7 @@ import Error404 from "./pages/error404/Error404";
 import GameDetailPage from "./pages/gameDetailpage/GameDetailPage";
 import Register from "./pages/register/register";
 import Aboutus from "./pages/aboutus/aboutus";
-import { BrowserRouter } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 function App() {
   return (
