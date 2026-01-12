@@ -129,9 +129,9 @@ export default function AdminGames() {
                 <tbody>
                     {games.map(g => (
                         <tr key={g.id}>
-                            <td>{g.nombre}</td>
-                            <td>{g.categoria}</td>
-                            <td>{g.tipo}</td>
+                            <td data-label="Nombre">{g.nombre}</td>
+                            <td data-label="Categoría">{g.categoria}</td>
+                            <td data-label="Tipo">{g.tipo}</td>
                             <td>
                                 <button onClick={() => editGame(g)}>Editar</button>
                                 <button className="danger" onClick={() => deleteGame(g.id)}>

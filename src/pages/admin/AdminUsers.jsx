@@ -115,7 +115,7 @@ export default function AdminUsers() {
                                 <td>{u.nombre}</td>
                                 <td>{u.email}</td>
                                 <td>{u.rol}</td>
-                                <td>
+                                <td data-label="Acciones">
                                     <button className="danger" onClick={() => deleteUser(u.id)}>
                                         Eliminar
                                     </button>
