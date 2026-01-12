@@ -1,132 +1,193 @@
 .home {
-    position: relative;
-    min-height: 100vh;
-    background: linear-gradient(to bottom,
-            #0b0b0b 0%,
-            #0e0e0e 45%,
-            #141414 100%);
-    color: #f2f2f2;
-    overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #0b0b0b 0%, #0e0e0e 45%, #141414 100%);
+  color: #f2f2f2;
+  overflow-x: hidden;
 }
 
-/* GRADIENTE ROJO */
+/* GRADIENTE ROJO DE FONDO */
 .home::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(140, 31, 40, 0.45) 0%,
-            rgba(140, 31, 40, 0.25) 25%,
-            rgba(140, 31, 40, 0.1) 45%,
-            transparent 65%);
-    pointer-events: none;
-    z-index: 0;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(140, 31, 40, 0.45) 0%,
+    rgba(140, 31, 40, 0.25) 25%,
+    rgba(140, 31, 40, 0.1) 45%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
-.home>* {
-    position: relative;
-    z-index: 1;
+.home > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* === CONTENEDOR CENTRADO === */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 /* HEADER */
 .homeHeader {
-    background: linear-gradient(to bottom, #000, #0b0b0b);
-    border-bottom: 1px solid rgba(140, 31, 40, 0.4);
+  width: 100%;
+  background: linear-gradient(to bottom, #000, #0b0b0b);
+  border-bottom: 1px solid rgba(140, 31, 40, 0.4);
 }
 
 .headerContent {
-    height: 80px;
-    display: flex;
-    align-items: center;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 .logoPlaceholder {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .logoImg {
-    height: 48px;
+  height: 48px;
 }
 
 .logoText {
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: 0.09em;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
 }
 
 .logoText span {
-    color: #8c1f28;
+  color: #8c1f28;
 }
 
 /* TITULOS */
 .sectionTitle {
-    font-size: 1.9rem;
-    font-weight: 700;
-    margin-bottom: 24px;
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 24px;
 }
 
 /* BUSCADOR */
 .searchInput {
-    width: 100%;
-    background: linear-gradient(180deg, #111, #0b0b0b);
-    border: 1px solid rgba(140, 31, 40, 0.45);
-    color: #fff;
-    border-radius: 14px;
-    padding: 14px 18px;
-    font-size: 0.95rem;
+  width: 100%;
+  background: linear-gradient(180deg, #111, #0b0b0b);
+  border: 1px solid rgba(140, 31, 40, 0.45);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  outline: none;
 }
 
 .searchInput::placeholder {
-    color: #888;
+  color: #888;
 }
 
-/* CARRUSEL */
+/* CARRUSEL MEJORADO */
 .carouselImageWrapper {
-    position: relative;
-    border-radius: 18px;
-    overflow: hidden;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .carouselImageWrapper img {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .carouselCaption {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 28px;
-    background: linear-gradient(to top,
-            rgba(0, 0, 0, 0.9),
-            rgba(0, 0, 0, 0.45),
-            transparent);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.8) 40%,
+    rgba(0, 0, 0, 0.4) 70%,
+    transparent 100%
+  );
+  text-align: left;
+  color: #fff;
+  z-index: 2;
+}
+
+.carouselCaption h3 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.carouselCaption p {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  opacity: 0.9;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* CATALOGO */
 .categoryTitle {
-    color: #8c1f28;
-    font-weight: 700;
-    margin-bottom: 14px;
-    border-bottom: 2px solid rgba(140, 31, 40, 0.6);
-    padding-bottom: 6px;
+  color: #8c1f28;
+  font-weight: 700;
+  margin-bottom: 14px;
+  border-bottom: 2px solid rgba(140, 31, 40, 0.6);
+  padding-bottom: 6px;
 }
 
 .emptyCategory {
-    font-size: 0.85rem;
-    color: #888;
+  font-size: 0.85rem;
+  color: #888;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .carouselImageWrapper img {
-        height: 260px;
-    }
+  .carouselImageWrapper img {
+    height: 260px;
+  }
 
-    .logoText {
-        font-size: 1.4rem;
-    }
+  .logoText {
+    font-size: 1.4rem;
+  }
+
+  .headerContent {
+    padding: 0 20px;
+  }
+
+  .carouselCaption {
+    padding: 20px 25px;
+  }
+
+  .carouselCaption h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .carouselCaption p {
+    font-size: 0.95rem;
+    -webkit-line-clamp: 3;
+  }
 }

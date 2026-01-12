@@ -41,7 +41,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/error404" element={<Error404 />} />
         <Route path="*" element={<AdminPanel />} />
-        <Route path="/juego/:id" element={<GameDetailPage />} />
+        <Route path="/juego/:slug" element={<GameDetailPage />} />
       </Routes>
     </BrowserRouter>
   );

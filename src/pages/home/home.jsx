@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import GameCard from "../../components/GameCard";
 import "./home.css";
+
+const slugify = (text) =>
+  text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-");
 
 export default function Home() {
   const [games, setGames] = useState([]);
@@ -31,7 +39,7 @@ export default function Home() {
           <div className="logoPlaceholder">
             <img src="/logpngeg.png" alt="EvilGame" className="logoImg" />
             <span className="logoText">
-              EVIL<span>GAMES</span>
+              EVIL<span>GAME</span>
             </span>
           </div>
         </div>
@@ -55,22 +63,26 @@ export default function Home() {
                   key={game.id}
                   className={`carousel-item ${index === 0 ? "active" : ""}`}
                 >
-                  <div className="carouselImageWrapper">
-                    <img
-                      src={game.imagen}
-                      className="d-block w-100"
-                      alt={game.nombre}
-                    />
-                    <div className="carouselCaption">
-                      <h3>{game.nombre}</h3>
-                      <p>{game.descripcion}</p>
+                  <Link
+                    to={`/juego/${slugify(game.nombre)}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <div className="carouselImageWrapper">
+                      <img
+                        src={game.imagen}
+                        className="d-block w-100"
+                        alt={game.nombre}
+                      />
+                      <div className="carousel-caption carouselCaption">
+                        <h3>{game.nombre}</h3>
+                        <p>{game.descripcion}</p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
 
-            {/* FLECHA IZQ */}
             <button
               className="carousel-control-prev"
               type="button"
@@ -80,7 +92,6 @@ export default function Home() {
               <span className="carousel-control-prev-icon" />
             </button>
 
-            {/* FLECHA DER */}
             <button
               className="carousel-control-next"
               type="button"

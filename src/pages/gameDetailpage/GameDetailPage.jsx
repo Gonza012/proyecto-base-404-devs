@@ -1,24 +1,33 @@
 import { useParams } from "react-router-dom";
 import GameDetail from "../../components/GameDetail/GameDetails";
-import juegosData from "../../data/juegos";
+import juegos from "../../data/juegos";
 
-function GameDetailPage() {
-  const { id } = useParams();
+const slugify = (text) => {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-");
+};
 
-  const juegosGuardados = JSON.parse(localStorage.getItem("juegos")) || [];
-  let juego = juegosGuardados.find((j) => j.id === id);
+export default function GameDetailPage() {
+  const { slug } = useParams();
 
-  if (!juego) {
-    juego = juegosData.find((j) => j.id === id);
-  }
+  // Buscamos el juego comparando los slugs
+  const juego = juegos.find((j) => slugify(j.nombre) === slug);
 
+  // Debug para ver si llega la info
+  console.log("Datos recibidos en GameDetail:", juego);
+
+  // Si no encuentra el juego, mostramos error
   if (!juego) {
     return (
-      <div className="text-white text-center mt-5">Juego no encontrado</div>
+      <div style={{ padding: "40px", color: "#fff", textAlign: "center" }}>
+        <h2>Juego no encontrado</h2>
+      </div>
     );
   }
 
+  // Renderizamos el componente con todo el diseño
   return <GameDetail juego={juego} />;
 }
-
-export default GameDetailPage;
