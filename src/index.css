@@ -1,0 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #000000;
+  height: auto;
+  min-height: 100%;
+  overflow-y: auto;
+}

@@ -4,6 +4,8 @@ import Aboutus from "./pages/aboutus/aboutus";
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
 import AuthChecker from "./routes/authChecker";
+import Error404 from "./pages/error404/Error404";
+import GameDetailPage from "./pages/GameDetailPage";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
               </AuthChecker>
             }
           />
+          <Route path="/error404" element={<Error404 />} />
+          <Route path="/juego/:id" element={<GameDetailPage />} />
         </Routes>
       </BrowserRouter>
       ,
