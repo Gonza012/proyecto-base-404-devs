@@ -1,34 +1,24 @@
+import "./GameCard.css";
+
 export default function GameCard({ game }) {
     if (!game) return null;
 
     return (
-        <article style={{
-            background: "#111",
-            border: "1px solid #222",
-            borderRadius: "12px",
-            overflow: "hidden"
-        }}>
-            {game.imagen && (
-                <img
-                    src={game.imagen}
-                    alt={game.nombre}
-                    style={{
-                        width: "100%",
-                        aspectRatio: "2 / 3",
-                        objectFit: "cover"
-                    }}
-                />
-            )}
+        <article className="gameCard">
+            <div className="gameImage">
+                {game.imagen ? (
+                    <img src={game.imagen} alt={game.nombre} />
+                ) : (
+                    <div className="noImage">Sin imagen</div>
+                )}
+            </div>
 
-            <div style={{ padding: "12px" }}>
-                <small style={{ color: "#8c1f28" }}>{game.categoria}</small>
-                <h3 style={{ fontSize: "1rem", margin: "6px 0" }}>
-                    {game.nombre}
-                </h3>
-                <p style={{ fontSize: "0.85rem", color: "#aaa" }}>
-                    {game.descripcion}
-                </p>
+            <div className="gameInfo">
+                <span className="category">{game.categoria}</span>
+                <h3 className="title">{game.nombre}</h3>
+                <p className="description">{game.descripcion}</p>
             </div>
         </article>
     );
 }
+

@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/home/home";
-import AdminPanel from "./pages/admin/AdminPanel.jsx";
+import AdminPanel from "./pages/admin/AdminPanel";
 import ProtectedAdmin from "./components/ProtectedAdmin";
 import Error404 from "./pages/error404/Error404";
-import GameDetailPage from "./pages/GameDetailPage";
 
 function App() {
   return (
@@ -21,8 +20,6 @@ function App() {
           }
         />
 
-        <Route path="/game/:id" element={<GameDetailPage />} />
-
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
@@ -30,3 +27,4 @@ function App() {
 }
 
 export default App;
+

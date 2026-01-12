@@ -19,7 +19,7 @@ export default function AdminPanel() {
                         Usuarios
                     </button>
                     <button
-                        className={tab === "games" ? "active" : ""}
+                        className={tab === "games" ? "active" : ""} 
                         onClick={() => setTab("games")}
                     >
                         Juegos
@@ -33,4 +33,3 @@ export default function AdminPanel() {
         </div>
     );
 }
-
