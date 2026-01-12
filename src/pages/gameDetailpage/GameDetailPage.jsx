@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import GameDetail from "../components/GameDetail/GameDetails";
-import juegosData from "../data/juegos";
+import GameDetail from "../../components/GameDetail/GameDetails";
+import juegosData from "../../data/juegos";
 
 function GameDetailPage() {
   const { id } = useParams();

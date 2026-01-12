@@ -32,6 +32,10 @@
   font-size: 0.9rem;
 }
 
+.loginForm {
+  width: 100%;
+}
+
 .inputGroup {
   text-align: left;
   margin-bottom: 1.2rem;
@@ -82,7 +86,6 @@
   background: linear-gradient(90deg, #ea384d, #d31027);
 }
 
-/* Mensaje de Error */
 .errorMessage {
   margin-top: 1rem;
   padding: 10px;

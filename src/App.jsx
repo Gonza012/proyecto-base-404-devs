@@ -5,6 +5,8 @@ import AdminPanel from "./pages/admin/AdminPanel";
 import ProtectedAdmin from "./components/ProtectedAdmin";
 import Login from "./pages/login/login";
 import Error404 from "./pages/error404/Error404";
+import GameDetailPage from "./pages/gameDetailpage/GameDetailPage";
+import Register from "./pages/register/register";
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/Aboutus" element={<Aboutus />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/error404" element={<Error404 />} />
           <Route path="/juego/:id" element={<GameDetailPage />} />
         </Routes>
