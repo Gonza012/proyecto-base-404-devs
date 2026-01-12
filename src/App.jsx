@@ -13,15 +13,6 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/Aboutus" element={<Aboutus />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/login"
-            element={
-              <AuthChecker>
-                {" "}
-                <Home />{" "}
-              </AuthChecker>
-            }
-          />
         </Routes>
       </BrowserRouter>
       ,
