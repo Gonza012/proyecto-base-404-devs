@@ -7,10 +7,12 @@ import Register from "./pages/register/register";
 import Aboutus from "./pages/aboutus/aboutus";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/home/home";
+import CustomNavbar from "./components/navbar/navbar";
 
 function App() {
   return (
     <BrowserRouter>
+      <CustomNavbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route

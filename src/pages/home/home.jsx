@@ -28,24 +28,11 @@ export default function Home() {
       (g) =>
         g.tipo === "normal" &&
         g.categoria === cat &&
-        g.nombre.toLowerCase().includes(search.toLowerCase())
+        g.nombre.toLowerCase().includes(search.toLowerCase()),
     );
 
   return (
     <div className="home">
-      {/* HEADER */}
-      <header className="homeHeader">
-        <div className="container headerContent">
-          <div className="logoPlaceholder">
-            <img src="/logpngeg.png" alt="EvilGame" className="logoImg" />
-            <span className="logoText">
-              EVIL<span>GAME</span>
-            </span>
-          </div>
-        </div>
-      </header>
-
-      {/* DESTACADOS */}
       {destacados.length > 0 && (
         <section className="container py-4">
           <h2 className="sectionTitle">Destacados</h2>

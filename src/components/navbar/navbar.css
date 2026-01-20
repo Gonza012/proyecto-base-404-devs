@@ -1,0 +1,43 @@
+.evil-navbar {
+  background-color: #121212 !important;
+  border-bottom: 2px solid #b71c1c;
+  box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
+  padding: 0.8rem 1rem;
+}
+
+.brand-text {
+  font-weight: 800;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.nav-link:hover {
+  color: #ff4444 !important;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+}
+
+.nav-link.active {
+  color: #ff4444 !important;
+  font-weight: bold;
+}
+
+.user-dropdown {
+  border: 1px solid #333;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: #121212;
+    padding: 1rem;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    z-index: 1000;
+  }
+}

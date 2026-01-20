@@ -1,43 +1,46 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-body {
-    background-color: #044040;
-}
-
-.nosotros {
-    padding: 50px;
-    background-color: #044040;
-    color: white;
-    height: 400px;
-    border-radius: 10px;
-}
-
-.team-container {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.member-card:hover {
-transform: scale(1.05);
-transition: 0.3s;
-box-shadow: 0 0 15px #22c55e;
+.nosotros-section {
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 4rem 2rem;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .titulo-equipo {
-    margin-bottom: 70px;
-    border: solid;
-    height: 100px;
-    padding: 15px;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #b71c1c;
+  letter-spacing: 2px;
 }
 
-p {
-    font-size: 25px;
-    margin-top: 30px;
+.team-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.texto-descripcion {
+  max-width: 800px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #aaa;
+  margin-top: 2rem;
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid #b71c1c;
 }

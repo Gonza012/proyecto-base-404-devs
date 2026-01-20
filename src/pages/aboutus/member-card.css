@@ -1,19 +1,42 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+.member-card {
+  background: linear-gradient(145deg, #1e1e1e, #252525);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 220px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
-.member-card {
-    background-color: #1e293b;
-    border-radius: 10px;
-    padding: 20px;
-    width: 200px;
-    text-align: center;
-    color: white;
+.member-card:hover {
+  transform: translateY(-10px);
+  border-color: #b71c1c;
+  box-shadow: 0 10px 20px rgba(183, 28, 28, 0.2);
 }
 
 .member-card img {
-    width: 100px;
-    border-radius: 10px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #b71c1c;
+  margin-bottom: 1rem;
+}
+
+.member-card h3 {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.member-card p {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

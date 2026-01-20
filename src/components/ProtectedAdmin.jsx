@@ -1,15 +1,13 @@
 import { Navigate } from "react-router-dom";
 
 function ProtectedAdmin({ children }) {
-    const usuarioLogueado = JSON.parse(
-        localStorage.getItem("usuarioLogueado")
-    );
+  const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado"));
 
-    if (!usuarioLogueado || usuarioLogueado.rol !== "admin") {
-        return <Navigate to="/" replace />;
-    }
+  if (!usuarioLogueado || usuarioLogueado.rol !== "admin") {
+    return <Navigate to="/" replace />;
+  }
 
-    return children;
+  return children;
 }
 
 export default ProtectedAdmin;
